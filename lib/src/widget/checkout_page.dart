@@ -56,27 +56,30 @@ class _PaymayaCheckoutPageState extends State<PaymayaCheckoutPage> {
         return false;
       },
       child: Scaffold(
-        body: WebViewWidget(
-          controller: WebViewController()
-            ..loadRequest(Uri.parse(widget.url))
-            ..setJavaScriptMode(JavaScriptMode.unrestricted)
-            ..enableZoom(true)
-            ..setNavigationDelegate(
-              NavigationDelegate(
-                onNavigationRequest: (NavigationRequest delegate) {
-                  if (delegate.url.contains(widget.redirectUrls.success)) {
-                    Navigator.pop(context, PaymentStatus.success);
-                  } else if (delegate.url
-                      .contains(widget.redirectUrls.failure)) {
-                    Navigator.pop(context, PaymentStatus.failure);
-                  } else if (delegate.url
-                      .contains(widget.redirectUrls.cancel)) {
-                    Navigator.pop(context, PaymentStatus.cancel);
-                  }
-                  return NavigationDecision.navigate;
-                },
+        appBar: AppBar(),
+        body: SafeArea(
+          child: WebViewWidget(
+            controller: WebViewController()
+              ..loadRequest(Uri.parse(widget.url))
+              ..setJavaScriptMode(JavaScriptMode.unrestricted)
+              ..enableZoom(true)
+              ..setNavigationDelegate(
+                NavigationDelegate(
+                  onNavigationRequest: (NavigationRequest delegate) {
+                    if (delegate.url.contains(widget.redirectUrls.success)) {
+                      Navigator.pop(context, PaymentStatus.success);
+                    } else if (delegate.url
+                        .contains(widget.redirectUrls.failure)) {
+                      Navigator.pop(context, PaymentStatus.failure);
+                    } else if (delegate.url
+                        .contains(widget.redirectUrls.cancel)) {
+                      Navigator.pop(context, PaymentStatus.cancel);
+                    }
+                    return NavigationDecision.navigate;
+                  },
+                ),
               ),
-            ),
+          ),
         ),
       ),
     );

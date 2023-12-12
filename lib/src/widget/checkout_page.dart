@@ -35,13 +35,13 @@ class _PaymayaCheckoutPageState extends State<PaymayaCheckoutPage> {
                   TextButton(
                     child: const Text('CANCEL'),
                     onPressed: () {
-                      Navigator.pop(context, true);
+                      Navigator.pop(context, false);
                     },
                   ),
                   ElevatedButton(
-                    child: const Text('CONTINUE'),
+                    child: const Text('YES'),
                     onPressed: () {
-                      Navigator.pop(context, false);
+                      Navigator.pop(context, true);
                     },
                   )
                 ],

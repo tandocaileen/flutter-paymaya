@@ -29,19 +29,19 @@ class _PaymayaCheckoutPageState extends State<PaymayaCheckoutPage> {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: const Text('Do you want to cancel your order'),
+                title: const Text('Do you want to cancel your order?'),
                 content: const Text(''),
                 actions: [
                   TextButton(
-                    child: const Text('CANCEL'),
+                    child: const Text('NO'),
                     onPressed: () {
-                      Navigator.pop(context, false);
+                      Navigator.pop(context, true);
                     },
                   ),
                   ElevatedButton(
                     child: const Text('YES'),
                     onPressed: () {
-                      Navigator.pop(context, true);
+                      Navigator.pop(context, false);
                     },
                   )
                 ],
